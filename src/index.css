@@ -3,3 +3,8 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+div.profile-avatar {
+  width: auto;
+  height: 100px;
+}
