@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class PersonalData extends Component {
   render () {
-    const { profile } = this.props;
+    const { profile, openProject } = this.props;
     return (
       <div className='profile-info'>
         <div className="profile-avatar" style={{
@@ -30,14 +30,19 @@ class PersonalData extends Component {
         <div className='projects'>
           <h3>Projects</h3>
           <ol className='list-of-projects'>
+          {profile.projects.map((project) => (
             <li key={profile.projects.id} className='projects-list-item'>
               <div className='project-name'>
                 <input type='checkbox'/>
-                <p>nazwa</p>
-                <button>Open</button>
+                <p>{project.nazwa}</p>
+                <button onClick={() =>
+                  openProject(project)} className='showProject'>
+                  Open
+                </button>
                 <button>Hide</button>
               </div>
             </li>
+            ))}
           </ol>
         </div>
       </div>

@@ -11,14 +11,29 @@ class App extends Component {
       email: 'e@email.pl',
       location: 'city',
       avatarURL: 'url("avatar.svg")',
-      projects: []
+      projects: [
+        {
+          nazwa: 'nazwa',
+          url: 'http://google.com',
+        },
+        {
+          nazwa: 'cosinnego',
+          url: 'http://google.com',
+        }
+      ]
     }
   }
+
+  openGithubLink = (project) => {window.open(`${project.url}`, '_blank')}
+
+
   render() {
     return (
       <div className="App">
         <Search/>
-        <PersonalData profile={this.state.profile}/>
+        <PersonalData
+          profile={this.state.profile}
+          openProject={this.openGithubLink}/>
       </div>
     );
   }
