@@ -11,21 +11,27 @@ class App extends Component {
       email: 'e@email.pl',
       location: 'city',
       avatarURL: 'url("avatar.svg")',
-      projects: [
-        {
-          nazwa: 'nazwa',
-          url: 'http://google.com',
-        },
-        {
-          nazwa: 'cosinnego',
-          url: 'http://google.com',
-        }
-      ]
-    }
+    },
+    projects: [
+      {
+        name: 'nazwa',
+        url: 'http://google.com',
+      },
+      {
+        name: 'cosinnego',
+        url: 'http://google.com',
+      }
+    ]
+
   }
 
   openGithubLink = (project) => {window.open(`${project.url}`, '_blank')}
 
+  hideGithubLink = (project) => {
+    this.setState((state) => ({
+      projects: state.projects.filter((p) => p.name !== project.name)
+    }))
+  }
 
   render() {
     return (
@@ -33,7 +39,9 @@ class App extends Component {
         <Search/>
         <PersonalData
           profile={this.state.profile}
-          openProject={this.openGithubLink}/>
+          projects={this.state.projects}
+          openProject={this.openGithubLink}
+          hideProject={this.hideGithubLink}/>
       </div>
     );
   }
