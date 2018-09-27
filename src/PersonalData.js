@@ -25,7 +25,7 @@ class PersonalData extends Component {
           <h3>Basic information</h3>
             <p>{profile.link}</p>
             <p>{profile.email}</p>
-            <p>{profile.location}</p>
+            <p>{profile.place}</p>
         </div>
         <div className='projects'>
           <h3>Projects</h3>
