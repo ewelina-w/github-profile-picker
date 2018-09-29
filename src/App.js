@@ -12,13 +12,10 @@ class App extends Component {
       place: '',
       avatarURL: ''
     },
-    projects: []
+    projects: [],
+    user: ''
+  }
 
-  }
-  componentDidMount() {
-    this.getInfo();
-    this.getRepo();
-  }
   openGithubLink = (project) => {window.open(`${project.url}`, '_blank')}
 
   hideGithubLink = (project) => {
@@ -27,10 +24,23 @@ class App extends Component {
     }))
   }
 
+// Listen for Githhub login
+  newUser = (user) => {
+    this.setState({ user: user.trim()})
+  }
+
+// Set data for choosen Github login
+  setUser = () => {
+    if(this.state.user.length>0) {
+        this.getInfo();
+        this.getRepo();
+    }
+  }
+
 // Get info from Github API
   getInfo () {
 
-    const url = 'https://api.github.com/users/ewelina-w';
+    const url = `https://api.github.com/users/${this.state.user}`;
 
     let flag = this
     var newData = {
@@ -80,7 +90,7 @@ class App extends Component {
 
 // Get repos from Github API
 getRepo () {
-  const url = 'https://api.github.com/users/ewelina-w/repos';
+  const url = `https://api.github.com/users/${this.state.user}/repos`;
   let flag = this;
   var newProjects = [];
   fetch(url)
@@ -100,7 +110,7 @@ getRepo () {
               name,
               html_url
             };
-            // TODO url się otwiera jako api :(
+            // TODO url się otwiera jako api :( może jeszcze raz doda setState?
 
             flag.setState({projects: newProjects});
           })
@@ -119,7 +129,9 @@ getRepo () {
   render() {
     return (
       <div className="App">
-        <Search/>
+        <Search
+          searchForUser={this.setUser}
+          updateUser={this.newUser}/>
         <PersonalData
           profile={this.state.profile}
           projects={this.state.projects}
