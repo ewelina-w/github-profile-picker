@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 class Search extends Component {
-  
+
   render() {
-    const { searchForUser, updateUser } = this.props;
+    const { searchForUser, updateUser, handleKeyPress } = this.props;
     return (
       <div className='search-for-profile'>
         <input
@@ -11,9 +11,12 @@ class Search extends Component {
           type='text'
           placeholder='Put a Github login here'
           onChange={(event) => updateUser(event.target.value)}
+          onKeyPress={(e) => handleKeyPress(e)}
         />
-        <button onClick={() =>
-          searchForUser()} className='search'>
+        <button
+          onClick={() =>
+            searchForUser()}
+          className='search'>
           Search
         </button>
       </div>

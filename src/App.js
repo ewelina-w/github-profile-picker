@@ -29,6 +29,7 @@ class App extends Component {
     this.setState({ user: user.trim()})
   }
 
+
 // Set data for choosen Github login
   setUser = () => {
     if(this.state.user.length>0) {
@@ -36,6 +37,14 @@ class App extends Component {
         this.getRepo();
     }
   }
+
+// Helper function to search for Github login on pressing Enter
+    searchOnEnter = (e) => {
+      if (e.key === 'Enter') {
+        this.setUser();
+        console.log('eneter')
+      }
+    }
 
 // Get info from Github API
   getInfo () {
@@ -131,7 +140,9 @@ getRepo () {
       <div className="App">
         <Search
           searchForUser={this.setUser}
-          updateUser={this.newUser}/>
+          updateUser={this.newUser}
+          handleKeyPress={this.searchOnEnter}
+        />
         <PersonalData
           profile={this.state.profile}
           projects={this.state.projects}
