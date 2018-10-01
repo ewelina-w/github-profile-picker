@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import './App.css';
+import './index.css';
 import Search from './Search'
 import PersonalData from './PersonalData'
 
@@ -155,13 +155,15 @@ getRepo () {
           updateUser={this.newUser}
           handleKeyPress={this.searchOnEnter}
         />
-        <PersonalData
-          profile={this.state.profile}
-          projects={this.state.projects}
-          restoredProjects={this.state.restoredProjects}
-          restore={this.restoreAllProjects}
-          openProject={this.openGithubLink}
-          hideProject={this.hideGithubLink}/>
+        {this.state.profile.login && (
+          <PersonalData
+            profile={this.state.profile}
+            projects={this.state.projects}
+            restoredProjects={this.state.restoredProjects}
+            restore={this.restoreAllProjects}
+            openProject={this.openGithubLink}
+            hideProject={this.hideGithubLink}/>
+        )}
       </div>
     );
   }
