@@ -13,18 +13,25 @@ class App extends Component {
       avatarURL: ''
     },
     projects: [],
+    restoredProjects: [],
     user: ''
   }
-
+  // Open project in new tab
   openGithubLink = (project) => {window.open(`${project.url}`, '_blank')}
 
+  // Hide selected project
   hideGithubLink = (project) => {
     this.setState((state) => ({
       projects: state.projects.filter((p) => p.name !== project.name)
     }))
   }
 
-// Listen for Githhub login
+  // Show all projects
+  restoreAllProjects = (projects, restoredProjects) => {
+    this.setState({ projects: restoredProjects})
+  }
+
+  // Listen for Githhub login
   newUser = (user) => {
     this.setState({ user: user.trim()})
   }
@@ -42,7 +49,6 @@ class App extends Component {
     searchOnEnter = (e) => {
       if (e.key === 'Enter') {
         this.setUser();
-        console.log('eneter')
       }
     }
 
@@ -122,6 +128,7 @@ getRepo () {
             // TODO url się otwiera jako api :( może jeszcze raz doda setState?
 
             flag.setState({projects: newProjects});
+            flag.setState({restoredProjects: newProjects});
           })
         })
         .catch(function(error) {
@@ -146,6 +153,8 @@ getRepo () {
         <PersonalData
           profile={this.state.profile}
           projects={this.state.projects}
+          restoredProjects={this.state.restoredProjects}
+          restore={this.restoreAllProjects}
           openProject={this.openGithubLink}
           hideProject={this.hideGithubLink}/>
       </div>

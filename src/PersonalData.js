@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
 class PersonalData extends Component {
+
   render () {
-    const { profile, projects, openProject, hideProject } = this.props;
+    const { profile, projects, openProject, hideProject, restoredProjects, restore } = this.props;
     return (
       <div className='profile-info'>
         <div className="profile-avatar" style={{
@@ -29,6 +30,15 @@ class PersonalData extends Component {
         </div>
         <div className='projects'>
           <h3>Projects</h3>
+          {projects.length !== restoredProjects.length && (
+            <div className='showingProjects'>
+              <span>Now showing {projects.length} of {restoredProjects.length} total</span>
+              <button onClick={() =>
+                restore(projects, restoredProjects)} className='restoredButton'>
+                Show all
+              </button>
+            </div>
+          )}
           <ol className='list-of-projects'>
           {projects.map((project) => (
             <li key={project.name} className={ project.name }>
