@@ -124,10 +124,11 @@ getRepo () {
         .then(function(response) {
           newProjects = response;
           newProjects.map((newProject) => {
-            let {name, html_url} = newProject;
+            let {name, html_url, updated_at} = newProject;
             newProject = {
               name,
-              html_url
+              html_url,
+              updated_at
             };
             // TODO url się otwiera jako api :( może jeszcze raz doda setState?
 

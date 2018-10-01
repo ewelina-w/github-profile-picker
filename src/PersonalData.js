@@ -5,7 +5,7 @@ class PersonalData extends Component {
 
   render () {
     const { profile, projects, openProject, hideProject, restoredProjects, restore } = this.props;
-    projects.sort(sortBy('name'))
+    projects.sort(sortBy('updated_at')).reverse()
 
     return (
       <div className='profile-info'>
