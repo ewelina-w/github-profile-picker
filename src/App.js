@@ -7,6 +7,7 @@ class App extends Component {
 
   state = {
     profile: {
+      login: '',
       link: '',
       email: '',
       place: '',
@@ -59,6 +60,7 @@ class App extends Component {
 
     let flag = this
     var newData = {
+      login: '',
       link: '',
       email: '',
       place: '',
@@ -70,6 +72,7 @@ class App extends Component {
         if (response.status !== 200) {
           var error = 'No data available';
           var errorMessage = {
+            login: 'No data available',
             link: 'No data available',
             email: 'No data available',
             place: 'No data available',
@@ -81,6 +84,7 @@ class App extends Component {
       } else
         response.json()
           .then(function(response) {
+            newData.login = response.login;
             newData.link = response.url;
             newData.email = response.email;
             newData.place = response.location;

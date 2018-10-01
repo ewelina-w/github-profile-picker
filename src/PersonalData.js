@@ -6,7 +6,7 @@ class PersonalData extends Component {
   render () {
     const { profile, projects, openProject, hideProject, restoredProjects, restore } = this.props;
     projects.sort(sortBy('name'))
-    
+
     return (
       <div className='profile-info'>
         <div className="profile-avatar" style={{
@@ -27,9 +27,18 @@ class PersonalData extends Component {
         </div>
         <div className='detailed-info'>
           <h3>Basic information</h3>
-            <p>{profile.link}</p>
-            <p>{profile.email}</p>
-            <p>{profile.place}</p>
+          {profile.login && (
+            <p>Login: {profile.login}</p>
+          )}
+          {profile.link && (
+            <p>Link: {profile.link}</p>
+          )}
+          {profile.email && (
+            <p>Email: {profile.email}</p>
+          )}
+          {profile.place && (
+            <p>City: {profile.place}</p>
+          )}
         </div>
         <div className='projects'>
           <h3>Projects</h3>
