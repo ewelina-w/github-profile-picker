@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import sortBy from 'sort-by'
 
 class PersonalData extends Component {
 
   render () {
     const { profile, projects, openProject, hideProject, restoredProjects, restore } = this.props;
+    projects.sort(sortBy('name'))
+    
     return (
       <div className='profile-info'>
         <div className="profile-avatar" style={{
