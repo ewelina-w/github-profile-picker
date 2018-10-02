@@ -1,11 +1,35 @@
 import React, { Component } from 'react';
-import sortBy from 'sort-by'
+import sortBy from 'sort-by';
+import escapeRegExp from 'escape-string-regexp'
 
 class PersonalData extends Component {
+  state = {
+    query: ''
+  }
+
+  updateQuery = (query) => {
+    this.setState({ query: query.trim() })
+  }
+
+  clearQuery = () => {
+    this.setState({query: ''})
+  }
+
+
 
   render () {
     const { profile, projects, openProject, hideProject, restoredProjects, restore } = this.props;
+    const { query } = this.state
+    let selectedProjects
+    if (query) {
+      const match = new RegExp(escapeRegExp(query), 'i')
+      selectedProjects = projects.filter((project) => match.test(project.name))
+    } else {
+      selectedProjects = projects
+    }
     projects.sort(sortBy('updated_at')).reverse()
+
+
 
     return (
       <div className='profile-info'>
@@ -36,20 +60,40 @@ class PersonalData extends Component {
               <input
                 className='filter'
                 type='text'
-                placeholder='Search for info'
+                placeholder='Search for project'
+                value={query}
+                onChange={(event) => this.updateQuery(event.target.value)}
               />
             </div>
             <div className='buttons'>
-              <button className="open">Open</button>
-              <button className="hide">Hide</button>
-              <button className="show">Show</button>
+              <button
+                onClick={() =>
+                {selectedProjects.map((project) =>
+                  openProject(project)
+                )}}
+                className="open">
+              Open
+              </button>
+              <button onClick={() =>
+                {selectedProjects.map((project) =>
+                  hideProject(project)
+                )}}
+                className="hide">
+              Hide
+              </button>
+              <button
+                onClick={this.clearQuery}
+                className="show"
+              >
+              Show all
+              </button>
             </div>
           </div>
           <div className='projects'>
             <h3>Projects</h3>
-            {projects.length !== restoredProjects.length && (
+            {selectedProjects.length !== restoredProjects.length && (
               <div className='showingProjects'>
-                <span>Now showing {projects.length} of {restoredProjects.length} total</span>
+                <span>Now showing {selectedProjects.length} of {restoredProjects.length} total</span>
                 <button onClick={() =>
                   restore(projects, restoredProjects)} className='restoredButton'>
                   Show all
@@ -57,7 +101,7 @@ class PersonalData extends Component {
               </div>
             )}
             <ol className='list-of-projects'>
-            {projects.map((project) => (
+            {selectedProjects.map((project) => (
               <li key={project.name} className={ project.name }>
                 <div className='project-name'>
                   <p>{project.name}</p>
