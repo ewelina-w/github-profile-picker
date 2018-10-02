@@ -10,7 +10,7 @@ This application, after entering Github login, gives access to selected public i
 ## How to start?
 - install all project dependencies with `npm install`
 - start the development server with `npm start`.
-One can also find the application on: 
+One can also find the application on: https://ewelina-w.github.io/github-profile-picker/
 
 ## Copyright
 Copyright 2018 Ewelina Wojtysiak-Sowa. All rights reserved.
