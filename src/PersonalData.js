@@ -92,8 +92,11 @@ class PersonalData extends Component {
             {selectedProjects.length !== restoredProjects.length && (
               <div className="showingProjects">
                 <span>Now showing {selectedProjects.length} of {restoredProjects.length} total</span>
-                <button onClick={() =>
-                  restore(projects, restoredProjects)} className="restoredButton">
+                <button onClick={() => (
+                  restore(projects, restoredProjects),
+                  query !== '' && this.clearQuery()
+                  )}
+                  className="restoredButton">
                   Show all
                 </button>
               </div>
