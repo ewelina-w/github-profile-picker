@@ -15,8 +15,6 @@ class PersonalData extends Component {
     this.setState({query: ''})
   }
 
-
-
   render () {
     const { profile, projects, openProject, hideProject, restoredProjects, restore } = this.props;
     const { query } = this.state
@@ -82,7 +80,9 @@ class PersonalData extends Component {
               Hide
               </button>
               <button
-                onClick={this.clearQuery}
+                onClick={() => (
+                  this.clearQuery(), restore(projects, restoredProjects)
+                )}
                 className="show"
               >
               Show all
