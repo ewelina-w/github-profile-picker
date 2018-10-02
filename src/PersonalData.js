@@ -27,16 +27,14 @@ class PersonalData extends Component {
     }
     projects.sort(sortBy('updated_at')).reverse()
 
-
-
     return (
-      <div className='profile-info'>
+      <div className="profile-info">
         <div className="firstBox">
           <div className="profile-avatar" style={{
             backgroundImage: `url(${profile.avatarURL})`
           }}>
           </div>
-          <div className='detailed-info'>
+          <div className="detailed-info">
             <h3>Basic information</h3>
             {profile.login && (
               <p>Login: {profile.login}</p>
@@ -53,17 +51,17 @@ class PersonalData extends Component {
           </div>
         </div>
         <div className="secondBox">
-          <div className='filter-info'>
+          <div className="filter-info">
             <div>
               <input
-                className='filter'
-                type='text'
-                placeholder='Search for project'
+                className="filter"
+                type="text"
+                placeholder="Search for project"
                 value={query}
                 onChange={(event) => this.updateQuery(event.target.value)}
               />
             </div>
-            <div className='buttons'>
+            <div className="buttons">
               <button
                 onClick={() =>
                 {selectedProjects.map((project) =>
@@ -89,28 +87,28 @@ class PersonalData extends Component {
               </button>
             </div>
           </div>
-          <div className='projects'>
+          <div className="projects">
             <h3>Projects</h3>
             {selectedProjects.length !== restoredProjects.length && (
-              <div className='showingProjects'>
+              <div className="showingProjects">
                 <span>Now showing {selectedProjects.length} of {restoredProjects.length} total</span>
                 <button onClick={() =>
-                  restore(projects, restoredProjects)} className='restoredButton'>
+                  restore(projects, restoredProjects)} className="restoredButton">
                   Show all
                 </button>
               </div>
             )}
-            <ol className='list-of-projects'>
+            <ol className="list-of-projects">
             {selectedProjects.map((project) => (
               <li key={project.name} className={ project.name }>
-                <div className='project-name'>
+                <div className="project-name">
                   <p>{project.name}</p>
                   <button onClick={() =>
-                    openProject(project)} className='showProject'>
+                    openProject(project)} className="showProject">
                     Open
                   </button>
                   <button onClick={() =>
-                    hideProject(project)} className='hideButton'>
+                    hideProject(project)} className="hideButton">
                     Hide
                     </button>
                 </div>

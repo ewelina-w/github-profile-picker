@@ -5,18 +5,18 @@ class Search extends Component {
   render() {
     const { searchForUser, updateUser, handleKeyPress } = this.props;
     return (
-      <div className='search-for-profile'>
+      <div className="search-for-profile">
         <input
-          className='search'
-          type='text'
-          placeholder='Put a Github login here'
+          className="search"
+          type="text"
+          placeholder="Enter a Github login here"
           onChange={(event) => updateUser(event.target.value)}
           onKeyPress={(e) => handleKeyPress(e)}
         />
         <button
           onClick={() =>
             searchForUser()}
-          className='search'>
+          className="search">
           Search
         </button>
       </div>

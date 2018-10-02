@@ -17,6 +17,7 @@ class App extends Component {
     restoredProjects: [],
     user: ''
   }
+
   // Open project in new tab
   openGithubLink = (project) => {window.open(`${project.url}`, '_blank')}
 
@@ -29,33 +30,31 @@ class App extends Component {
 
   // Show all projects
   restoreAllProjects = (projects, restoredProjects) => {
-    this.setState({ projects: restoredProjects})
+    this.setState({ projects: restoredProjects })
   }
 
   // Listen for Githhub login
   newUser = (user) => {
-    this.setState({ user: user.trim()})
+    this.setState({ user: user.trim() })
   }
 
-
-// Set data for choosen Github login
+  // Set data for choosen Github login
   setUser = () => {
-    if(this.state.user.length>0) {
+    if(this.state.user.length > 0) {
         this.getInfo();
         this.getRepo();
     }
   }
 
-// Helper function to search for Github login on pressing Enter
-    searchOnEnter = (e) => {
-      if (e.key === 'Enter') {
-        this.setUser();
-      }
+  // Helper function to search for Github login on pressing Enter
+  searchOnEnter = (e) => {
+    if (e.key === 'Enter') {
+      this.setUser();
     }
+  }
 
-// Get info from Github API
+  // Get info from Github API
   getInfo () {
-
     const url = `https://api.github.com/users/${this.state.user}`;
 
     let flag = this
@@ -80,8 +79,7 @@ class App extends Component {
           }
           console.log(error);
           flag.setState({ profile: errorMessage })
-          // powyższy błąd jest dobrze obsługiwany :)
-      } else
+        } else
         response.json()
           .then(function(response) {
             newData.login = response.login;
@@ -105,48 +103,44 @@ class App extends Component {
       );
       }
     )
-}
-
-// Get repos from Github API
-getRepo () {
-  const url = `https://api.github.com/users/${this.state.user}/repos`;
-  let flag = this;
-  var newProjects = [];
-  fetch(url)
-    .then(function (response) {
-      if (response.status !== 200) {
-          var error = ['Sorry, there is a problem with loading data'];
-          flag.setState(
-            [{name:'No data available'}]
-          )
-        }
-      response.json()
-        .then(function(response) {
-          newProjects = response;
-          newProjects.map((newProject) => {
-            let {name, html_url, updated_at} = newProject;
-            newProject = {
-              name,
-              html_url,
-              updated_at
-            };
-            // TODO url się otwiera jako api :( może jeszcze raz doda setState?
-
-            flag.setState({projects: newProjects});
-            flag.setState({restoredProjects: newProjects});
-          })
-        })
-        .catch(function(error) {
-          flag.setState(
-            { projects:
-              [{name:'Sorry, there is a problem with loading data'}]
-            }
-          )
-      })
-    })
   }
 
-
+  // Get repos from Github API
+  getRepo () {
+    const url = `https://api.github.com/users/${this.state.user}/repos`;
+    let flag = this;
+    var newProjects = [];
+    fetch(url)
+      .then(function (response) {
+        if (response.status !== 200) {
+            var error = ['Sorry, there is a problem with loading data'];
+            flag.setState(
+              [{name:'No data available'}]
+            )
+        }
+        response.json()
+          .then(function(response) {
+            newProjects = response;
+            newProjects.map((newProject) => {
+              let {name, html_url, updated_at} = newProject;
+              newProject = {
+                name,
+                html_url,
+                updated_at
+              };
+            flag.setState({projects: newProjects});
+            flag.setState({restoredProjects: newProjects});
+            })
+          })
+          .catch(function(error) {
+            flag.setState(
+              { projects:
+                [{name:'Sorry, there is a problem with loading data'}]
+              }
+            )
+        })
+      })
+    }
   render() {
     return (
       <div className="App">

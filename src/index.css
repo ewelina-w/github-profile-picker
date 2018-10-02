@@ -8,7 +8,6 @@ body, input, button, div, span, div.showProjects {
   display: flex;
   flex-wrap: wrap;
   margin: 5px;
-
 }
 
 .search-for-profile {
@@ -72,6 +71,7 @@ div.buttons {
   height: 50px;
   width: auto
 }
+
 button.open, button.show, button.hide {
   height: 50px;
   width: 80px
@@ -134,12 +134,10 @@ span {
   margin-right: 10px
 }
 
-
 @media screen and (max-width: 790px) {
   body, input, button, div, span {
     font-size: 14px
   }
-
   button.search {
     width: 60px
   }
@@ -150,33 +148,24 @@ span {
   .search-for-profile {
     justify-content: flex-start;
   }
-
-
-
   div.profile-avatar {
     display: none;
   }
-
   div.detailed-info {
     margin-top: 0px
   }
-
   .filter-info {
     height: 150px;
     justify-content: flex-start;
   }
-
   .input-filter {
     margin-bottom: 0
   }
-
   .project-name p {
     width: 250px;
   }
   button.showProject, button.hideButton {
-
   }
-
   button.open {
     margin-left: 0px
   }
@@ -187,11 +176,9 @@ span {
     max-width: 245px;
     margin-top: 40px
   }
-
   input.filter {
     max-width: 250px
   }
-
   div.projects {
     max-width: 245px
   }
@@ -202,44 +189,33 @@ span {
     margin-top: 0px
   }
 }
+
 @media screen and (min-width: 450px) and (max-width: 650px) {
   div.profile-avatar {
     display: block;
     margin-bottom: 20px
   }
-
   .project-name p {
     width: 350px
   }
-
   input.search {
     width: 330px
   }
-
   div.detailed-info {
     width: 390px
   }
-
   input.filter {
     width: 399px
   }
-
-
 }
 
 @media screen and (min-width: 525px) and (max-width: 650px) {
-  /* div.profile-avatar {
-    display: block;
-    margin-bottom: 20px
-  } */
   .project-name p {
     width: 150px
   }
-
   button.open {
     margin-left: 10px
   }
-
   input.search {
     width: 330px
   }
@@ -249,11 +225,9 @@ span {
   div.profile-avatar {
     display: block
   }
-
   input.search {
     width: 330px
   }
-
   input.filter {
     margin-right: 10px
   }
@@ -262,30 +236,24 @@ span {
   }
 }
 
-
 @media screen and (min-width: 800px) and (max-width: 1040px){
   .secondBox {
     width: 400px
   }
-
   .filter-info {
     height: 100px;
     justify-content: flex-start;
   }
-
   input.filter {
     margin-bottom: 10px;
     max-width: 500px;
   }
-
   div.buttons {
     margin-bottom: 20px
   }
-
   .project-name p {
     width: 350px;
   }
-
   div.project-name {
     margin-bottom: 20px
   }
